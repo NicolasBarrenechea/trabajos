@@ -1,0 +1,18 @@
+{% extends "index.html" %}
+{% block content %}
+<main class='container'>
+    <div class="row">
+        <div class="col-md-8 offset-md-2 mt-5">
+            <form class='card card-body' action="" method='POST'>
+                    
+                    {{form}}
+                    {% csrf_token %}
+                    <button class='mt-3 btn btn-dark'>
+                        Crear
+                    </button>
+                </form>
+        </div>
+    </div>
+
+</main>
+{% endblock content %}

@@ -1,0 +1,55 @@
+{% extends 'index.html' %}
+{% block content %}
+
+
+<div class='container text-center mt-5'>
+    <form action="{% url 'crear' %}" method='GET'>
+        {% csrf_token %}
+        <button class="btn btn-dark mt-3">Crear</button>
+       </form>
+
+    
+    <h1>Inscritos</h1>
+
+    
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Telefono</th>
+        <th scope="col">Fecha inscripcion</th>
+        <th scope="col">Hora inscripcion</th>
+        <th scope="col">Institucion</th>
+        <th scope="col">Estado</th>
+        <th scope="col">Observacion</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for ins in inscritos %}
+      <tr>
+        
+        <td>{{ins.nombre}}</td>
+        <td>{{ins.telefono}}</td>
+        <td>{{ins.fechaInscripcion}}</td>
+        <td>{{ins.horaInscripcion}}</td>
+        <td>{{ins.institucion.nombre}}</td>
+        <td>{{ins.estado}}</td>
+        <td>{{ins.observacion}}</td>
+        <td><form action="{% url 'eliminar' ins.id %}" method='POST'>
+            {% csrf_token %}
+            <button>Eliminar</button>
+        </form></td>
+        <td><form action="{% url 'editar' ins.id %}" method='GET'>
+            {% csrf_token %}
+            <button>Editar</button>
+        </form></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table> 
+
+</div>
+
+{% endblock content %}
